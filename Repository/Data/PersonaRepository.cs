@@ -61,7 +61,15 @@ namespace Repository.Data
         {
             try
             {
-                return conexionDB.Execute("delete from Persona where id = @id", persona) > 0;
+                if (conexionDB.Execute("delete from Persona where id = @id", persona.Id) > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
             }
             catch (Exception ex)
             {
@@ -73,7 +81,14 @@ namespace Repository.Data
         {
             try
             {
-                return conexionDB.Execute("update Persona set nombre = @nombre, apellido = @apellido, cedula = @cedula where id = @id", persona) > 0;
+                if (conexionDB.Execute("update Persona set nombre = @nombre, apellido = @apellido, cedula = @cedula where id = @id", persona) > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             catch (Exception ex)
             {
